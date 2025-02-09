@@ -28,7 +28,9 @@ SECRET_KEY = "django-insecure-s2*9zjeb828oxq1!l#g=+o!f(zprlj&zw(ua^bb(-@(-e1rk2x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['breastcancer02.onrender.com', '127.0.0.1', 'localhost']
+
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
