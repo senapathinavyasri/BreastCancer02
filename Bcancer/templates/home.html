@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Awareness</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ff6b81;
+            padding: 15px 50px;
+        }
+
+        nav .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo img {
+            width: 40px;  
+            height: 40px;
+            margin-right: 10px;  
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .hero {
+            height: 90vh;
+            background-color: #ffe6e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ff4d6d;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff3351;
+        }
+
+        .image-gallery {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 20px;
+            background-color: #fff3f5;
+            flex-wrap: wrap;
+        }
+
+        .image-gallery .image-item {
+            width: 30%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: 300px;  
+            object-fit: cover; 
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.1); 
+        }
+
+        .image-gallery .caption {
+            font-size: 1.1em;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .cta {
+            background-color: #ff6b81;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+        }
+
+        .cta p {
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .image-gallery .image-item {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+                Breast Cancer Awareness
+            </div>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#about">About</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'signup' %}">Signup</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Join the Fight Against Breast Cancer</h1>
+            <p>Early detection can save lives. Support, educate, and raise awareness.</p>
+            <a href="#breast-cancer-info" class="btn">Learn More</a>
+        </div>
+    </section>
+
+    <section class="image-gallery">
+        <div class="image-item">
+            <img src="{% static 'images/awareness1.jpg' %}" alt="Breast Cancer Awareness">
+            <div class="caption">Breast Cancer Awareness Month</div>
+        </div>
+        <div class="image-item">
+            <img src="{% static 'images/awareness2.jpg' %}" alt="Pink Ribbon">
+            <div class="caption">The Pink Ribbon - A Symbol of Support</div>
+        </div>
+        <div class="image-item">
+            <img src="{% static 'images/awareness3.jpg' %}" alt="Women Empowerment">
+            <div class="caption">Empowering Women in the Fight Against Cancer</div>
+        </div>
+    </section>
+
+    <section id="breast-cancer-info" class="info-section">
+        <h2>What is Breast Cancer?</h2>
+        <p>Breast cancer is a type of cancer that begins in the cells of the breast. It is one of the most common cancers among women worldwide. While men can also get breast cancer, it is far less common. Early detection is crucial for improving survival rates and outcomes.</p>
+        <p>Regular screening and self-exams help in detecting abnormal changes in the breast tissue, which may indicate the presence of cancer.</p>
+    </section>
+
+    <section id="about" class="info-section">
+        <h2>Why Awareness Matters</h2>
+        <p>Breast cancer is one of the most common cancers affecting women. Early detection and education play a crucial role in treatment and survival rates.</p>
+    </section>
+
+    <section id="action" class="cta">
+        <h2>Take Action Now</h2>
+        <p>Sign up and join the awareness program to make a difference.</p>
+        <a href="{% url 'signup' %}" class="btn">Join Now</a>
+    </section>
+
+</body>
+</html>
