@@ -153,6 +153,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 import os
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_URL = '/static/'  # This is still needed but unused in your case
+
+
+# to aloow images to appear
+
+SECURE_CONTENT_TYPE_NOSNIFF = False

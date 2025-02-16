@@ -23,4 +23,5 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('predict/', predict_cancer, name='predict_cancer'),
+    #path('doctor/dashboard/', doctor_dashboard, name='doctor_dashboard'),
 ]

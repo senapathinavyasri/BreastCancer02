@@ -1,0 +1,13 @@
+<h2>Doctor Dashboard</h2>
+
+<h3>Appointments</h3>
+<table>
+    <tr><th>Patient</th><th>Date</th><th>Status</th></tr>
+    {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.patient.name }}</td>
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.status }}</td>
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,12 @@
+<form method="POST">
+    {% csrf_token %}
+    <label>Select Doctor:</label>
+    <select name="doctor">
+        {% for doctor in doctors %}
+            <option value="{{ doctor.id }}">{{ doctor.username }}</option>
+        {% endfor %}
+    </select>
+    <input type="date" name="date">
+    <input type="time" name="time">
+    <button type="submit">Book Appointment</button>
+</form>

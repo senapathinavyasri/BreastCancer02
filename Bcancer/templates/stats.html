@@ -1,0 +1,15 @@
+<canvas id="recoveryChart"></canvas>
+<script>
+    var ctx = document.getElementById('recoveryChart').getContext('2d');
+    var recoveryChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Recovered", "Ongoing"],
+            datasets: [{
+                label: 'Patients',
+                data: [{{ recovered_count }}, {{ ongoing_count }}],
+                backgroundColor: ['green', 'red']
+            }]
+        }
+    });
+</script>
