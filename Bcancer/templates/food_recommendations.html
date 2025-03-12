@@ -1,0 +1,137 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Food Recommendations</title>
+</head>
+<body>
+    <h1>Healthy Food Recommendations</h1>
+    <p>Here are some dietary suggestions for maintaining good health.</p>
+    <h2>Healthy Food Choices 🍏</h2>
+    <p>Watch this video for the best foods to eat for a healthy lifestyle.</p>
+
+<!-- Embed a YouTube Video -->
+<iframe width="560" height="315" 
+src="https://www.youtube.com/embed/44fIE2Znz_w?si=xohCs-FYXpi_uYGJ" 
+title="YouTube video player" frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<iframe width="560" height="315" 
+src="https://www.youtube.com/embed/KTIKydMWwHk?si=0FWZkLlU-fESEuUl" 
+title="YouTube video player" frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+ referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+
+<iframe width="560" height="315"
+ src="https://www.youtube.com/embed/H--idfvKpSE?si=1kQxMH_Ad7qYpx8f" 
+ title="YouTube video player" 
+ frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+ referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+
+    <a href="{% url 'predict_cancer' %}">Back to Prediction</a>
+</body>
+</html> {% endcomment %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recommendations</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Video Container */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Spacing between videos */
+            margin-top: 20px;
+        }
+
+        /* Individual Video Box */
+        .video-box {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 60%;
+        }
+
+        /* Back to Prediction Button */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #ff4d6d;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #e63c5a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Healthy Food Recommendations 🍏</h1>
+    <p>Watch these videos to learn about the best foods for a healthy lifestyle.</p>
+
+    <!-- Video Section -->
+    <div class="video-container">
+        <div class="video-box">
+            <h2>🥗 Best Foods for Your Health</h2>
+            <iframe width="100%" height="315" 
+                src="https://www.youtube.com/embed/44fIE2Znz_w?si=xohCs-FYXpi_uYGJ" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="video-box">
+            <h2>🍎 Nutrition Tips for a Strong Body</h2>
+            <iframe width="100%" height="315" 
+                src="https://www.youtube.com/embed/KTIKydMWwHk?si=0FWZkLlU-fESEuUl" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="video-box">
+            <h2>🥑 Healthy Eating Habits</h2>
+            <iframe width="100%" height="315" 
+                src="https://www.youtube.com/embed/H--idfvKpSE?si=1kQxMH_Ad7qYpx8f" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Back to Prediction Button -->
+    <a href="{% url 'predict_cancer' %}" class="back-button">🔙 Back to Prediction</a>
+</body>
+</html>
+

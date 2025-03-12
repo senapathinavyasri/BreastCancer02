@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breast Cancer Prediction Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #d63384;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #ff85a2;
+            color: white;
+        }
+        .feature-explanation {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #ff4d6d;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #e63c5a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Breast Cancer Classification Analysis</h1>
+        <p>Understanding the Key Features in Predicting Malignant and Benign Tumors</p>
+        
+        <h2>Selected Features & Their Thresholds</h2>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Benign Range</th>
+                <th>Malignant Range</th>
+            </tr>
+            <tr>
+                <td>Mean Radius</td>
+                <td>10 - 15 mm</td>
+                <td>17 - 25 mm</td>
+            </tr>
+            <tr>
+                <td>Mean Texture</td>
+                <td>12 - 20</td>
+                <td>20 - 30</td>
+            </tr>
+            <tr>
+                <td>Mean Perimeter</td>
+                <td>50 - 85 mm</td>
+                <td>100 - 150 mm</td>
+            </tr>
+            <tr>
+                <td>Mean Area</td>
+                <td>400 - 700</td>
+                <td>800 - 2500</td>
+            </tr>
+            <tr>
+                <td>Mean Smoothness</td>
+                <td>0.08 - 0.1</td>
+                <td>0.12 - 0.16</td>
+            </tr>
+        </table>
+        
+        <div class="feature-explanation">
+            <h2>Why These Features Matter?</h2>
+            <p><strong>1. Mean Radius:</strong> Malignant tumors tend to have a larger radius, indicating aggressive growth.</p>
+            <p><strong>2. Mean Texture:</strong> Higher texture values in malignant cases suggest irregularity in tissue structure.</p>
+            <p><strong>3. Mean Perimeter:</strong> Malignant tumors have larger perimeters due to abnormal cell growth.</p>
+            <p><strong>4. Mean Area:</strong> The total affected tissue area is significantly higher in malignant tumors.</p>
+            <p><strong>5. Mean Smoothness:</strong> Smoother edges are often associated with benign tumors, while rougher edges indicate malignancy.</p>
+        </div>
+        
+        <a href="{% url 'predict_cancer' %}" class="back-button">🔙 Back to Prediction</a>
+    </div>
+</body>
+</html>

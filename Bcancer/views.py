@@ -118,6 +118,18 @@ def predict_cancer(request):
     return render(request, 'predict.html', {'form': form})
 
 
+def food_recommendations(request):
+    return render(request, 'food_recommendations.html')
+
+def exercise_recommendations(request):
+    return render(request, 'exercise_recommendations.html')
+
+def doctor_consultation(request):
+    return render(request, 'doctor_consultation.html')
+
+def prediction_analysis(request):
+    return render(request, 'prediction_analysis.html')
+
 # def doctor_dashboard(request):
 #     patients = Patient.objects.all()
 #     appointments = Appointment.objects.filter(status="Pending")
