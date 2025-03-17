@@ -1,13 +1,293 @@
-<h2>Doctor Dashboard</h2>
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .chart-container {
+            width: 60%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #ff3366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #cc0033;
+        }
+    </style>
+</head>
+<body>
 
-<h3>Appointments</h3>
-<table>
-    <tr><th>Patient</th><th>Date</th><th>Status</th></tr>
-    {% for appointment in appointments %}
+    <h2>Prediction Dashboard</h2>
+
+    <table>
         <tr>
-            <td>{{ appointment.patient.name }}</td>
-            <td>{{ appointment.date }}</td>
-            <td>{{ appointment.status }}</td>
+            <th>Date</th>
+            <th>Mean Radius</th>
+            <th>Mean Texture</th>
+            <th>Mean Perimeter</th>
+            <th>Mean Area</th>
+            <th>Mean Smoothness</th>
+            <th>Prediction Result</th>
         </tr>
-    {% endfor %}
-</table>
+        {% for prediction in predictions %}
+        <tr>
+            <td>{{ prediction.created_at|date:"Y-m-d H:i" }}</td>
+            <td>{{ prediction.mean_radius }}</td>
+            <td>{{ prediction.mean_texture }}</td>
+            <td>{{ prediction.mean_perimeter }}</td>
+            <td>{{ prediction.mean_area }}</td>
+            <td>{{ prediction.mean_smoothness }}</td>
+            <td>
+                <strong style="color: {% if prediction.result == 'Malignant' %}red{% else %}green{% endif %};">
+                    {{ prediction.result }}
+                </strong>
+            </td>
+            
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No predictions yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="chart-container">
+        <canvas id="predictionChart"></canvas>
+    </div>
+
+    <a href="{% url 'predict_cancer' %}" class="back-button">🔙 Back to Prediction</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctx = document.getElementById('predictionChart');
+
+            if (ctx) {
+                var benignCount = {{ benign_count|default:0 }};
+                var malignantCount = {{ malignant_count|default:0 }};
+
+                if (benignCount === 0 && malignantCount === 0) {
+                    document.querySelector('.chart-container').innerHTML = "<p>No prediction data available for chart.</p>";
+                } else {
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Benign', 'Malignant'],
+                            datasets: [{
+                                data: [benignCount, malignantCount],
+                                backgroundColor: ['#4CAF50', '#FF5733'],
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                    labels: { font: { size: 14 } }
+                                }
+                            }
+                        }
+                    });
+                }
+            } else {
+                console.error("Canvas element not found!");
+            }
+        });
+    </script>
+
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .chart-container {
+            width: 60%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #ff3366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #cc0033;
+        }
+        /* Responsive Table */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+            th, td {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Prediction Dashboard</h2>
+
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Mean Radius</th>
+            <th>Mean Texture</th>
+            <th>Mean Perimeter</th>
+            <th>Mean Area</th>
+            <th>Mean Smoothness</th>
+            <th>Prediction Result</th>
+        </tr>
+        {% for prediction in predictions %}
+        <tr>
+            <td>{{ prediction.created_at|date:"Y-m-d H:i" }}</td>
+            <td>{{ prediction.mean_radius }}</td>
+            <td>{{ prediction.mean_texture }}</td>
+            <td>{{ prediction.mean_perimeter }}</td>
+            <td>{{ prediction.mean_area }}</td>
+            <td>{{ prediction.mean_smoothness }}</td>
+            <td>
+                <strong style="color: {% if prediction.result == 'Malignant' %}red{% else %}green{% endif %};">
+                    {{ prediction.result }}
+                </strong>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No predictions yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Prediction Distribution</h2>
+    <div class="chart-container">
+        <canvas id="predictionChart"></canvas>
+    </div>
+
+    <a href="{% url 'predict_cancer' %}" class="back-button">🔙 Back to Prediction</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctx = document.getElementById('predictionChart');
+
+            if (ctx) {
+                var benignCount = {{ benign_count|default:0 }};
+                var malignantCount = {{ malignant_count|default:0 }};
+
+                if (benignCount === 0 && malignantCount === 0) {
+                    document.querySelector('.chart-container').innerHTML = "<p>No prediction data available for chart.</p>";
+                } else {
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Benign', 'Malignant'],
+                            datasets: [{
+                                data: [benignCount, malignantCount],
+                                backgroundColor: ['#4CAF50', '#FF5733'],
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                    labels: { font: { size: 14 } }
+                                }
+                            }
+                        }
+                    });
+                }
+            } else {
+                console.error("Canvas element not found!");
+            }
+        });
+    </script>
+
+</body>
+</html>
