@@ -160,3 +160,4 @@ STATIC_URL = '/static/'  # This is still needed but unused in your case
 # to aloow images to appear
 
 SECURE_CONTENT_TYPE_NOSNIFF = False
+########################################################################################

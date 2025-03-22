@@ -16,9 +16,9 @@
             background-color: #ffe6e9;
         }
 
-        /* Sidebar Navigation */
+        /* Sidebar Navigation (Increased Width) */
         .sidebar {
-            width: 250px;
+            width: 350px; /* Increased width */
             height: 100vh;
             background-color: #ff6b81;
             color: white;
@@ -53,9 +53,9 @@
 
         /* Main Content */
         .content {
-            margin-left: 270px;
+            margin-left: 360px; /* Adjusted to match sidebar width */
             padding: 20px;
-            width: calc(100% - 270px);
+            width: calc(100% - 310px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -69,7 +69,8 @@
             text-align: center;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             width: 90%;
-            max-width: 800px;
+            max-width: 850px;
+            margin-left: 40px; /* Move slightly to the right */
         }
 
         .hero h1 {
@@ -83,13 +84,14 @@
             color: #555;
         }
 
-        /* Prediction Form Wrapper */
+        /* Prediction Form Wrapper (Shifted Right) */
         .form-wrapper {
             width: 100%;
-            max-width: 700px; /* Wider form */
+            max-width: 750px; /* Increased width */
             margin-top: 20px;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
+            margin-left: 30px; /* Shifted slightly to the right */
         }
 
         /* Prediction Form */
@@ -99,12 +101,12 @@
             border-radius: 10px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 700px; /* Increased width */
+            max-width: 750px;
             transition: transform 0.3s ease-in-out;
         }
 
         .form-container:hover {
-            transform: scale(1.02); /* Interactive effect */
+            transform: scale(1.02);
         }
 
         .form-container h2 {
@@ -157,7 +159,8 @@
             text-align: center;
             margin-top: 30px;
             width: 100%;
-            max-width: 700px;
+            max-width: 750px;
+            margin-left: 40px; /* Shifted slightly to the right */
         }
 
         .result-container h2 {
@@ -172,26 +175,25 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .sidebar {
-                width: 220px;
+                width: 280px;
             }
 
             .content {
-                margin-left: 230px;
-                width: calc(100% - 230px);
+                margin-left: 250px;
+                width: calc(100% - 250px);
             }
 
-            .hero {
-                width: 95%;
-            }
-
+            .hero,
             .form-container,
             .result-container {
-                max-width: 90%;
+                width: 95%;
+                margin-left: 10px;
             }
         }
 
         @media (max-width: 600px) {
             body {
+                width:100%;
                 flex-direction: column;
             }
 
@@ -230,7 +232,7 @@
             <p>Use our prediction tool to assess your risk and take proactive measures.</p>
         </section>
 
-        <!-- Prediction Form (Now Wider & Better Aligned) -->
+        <!-- Prediction Form (Shifted Right) -->
         <div class="form-wrapper">
             <div class="form-container">
                 <h2>Enter Your Details</h2>
@@ -265,7 +267,6 @@
             </div>
         {% endif %}
     </div>
-   
 
 </body>
 </html>

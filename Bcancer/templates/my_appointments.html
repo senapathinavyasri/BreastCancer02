@@ -1,0 +1,11 @@
+{% comment %} <h2>My Appointments</h2>
+{% for appointment in appointments %}
+<div>
+    <p>Doctor: {{ appointment.doctor.name }}</p>
+    <p>Date: {{ appointment.date }}</p>
+    <p>Time: {{ appointment.time }}</p>
+    <p>Status: {{ appointment.status }}</p>
+</div>
+{% empty %}
+<p>No appointments booked.</p>
+{% endfor %} {% endcomment %}

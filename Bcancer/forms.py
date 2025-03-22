@@ -17,6 +17,3 @@ class CancerPredictionForm(forms.Form):
     mean_perimeter = forms.FloatField(label='Mean Perimeter')
     mean_area = forms.FloatField(label='Mean Area')
     mean_smoothness = forms.FloatField(label='Mean Smoothness')
-
-
-

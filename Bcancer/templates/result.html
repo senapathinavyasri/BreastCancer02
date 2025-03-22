@@ -115,6 +115,21 @@
         .btn:hover {
             background-color: #ff3351;
         }
+        .exercise-button {
+            background-color:#007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .exercise-button:hover {
+            background-color: blue;
+        }
     </style>
 </head>
 <body>
@@ -139,13 +154,16 @@
         <div class="image-container">
             {% if "Cancer Detected" in result %}
                 <img src="https://cdn.glitch.global/7d4f8d49-963a-408b-b378-61b651d2a520/bc.png?v=1739724095749" alt="Cancer Detected">
+               
             {% else %}
            <!-- <img src="https://cdn.glitch.global/7d4f8d49-963a-408b-b378-61b651d2a520/bc.png?v=1739724095749" alt="Cancer Detected"> -->
            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCD8SwjiSPjcfpQboe-e9QPx7vhieXSopdbLviFhS6ibFbcjjzM5WOk6LIfW31bHsbBHM&usqp=CAU.jpg" alt="No Cancer Detected">
+           
             {% endif %}
         </div>
 
         <a href="{% url 'predict_cancer' %}" class="btn">Go Back to Prediction</a>
+        <a href="{% url 'food_recommendations' %}" class = "exercise-button" >🍏 Food Recommendations</a>
     </div>
 </body>
 </html>
